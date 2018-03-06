@@ -484,3 +484,15 @@
   border:2px solid black;
 }
 
+.contents.bowgun {
+  display:none;
+}
+
+.contents.bow {
+  display:none;
+}
+
+.contents.fencer {
+  display:none;
+}
+

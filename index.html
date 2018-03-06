@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <section class="contents">
+                            <section class="contents fencer">
                                 <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>剣士</strong></h2>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -63,7 +63,7 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><select class="form-control form-control" name="sharpness" style="height:46px;"></select></div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>属性攻撃力</label></div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="elementalAttackPower" required="" placeholder="0" min="0" max="65535" step="1"></div>
@@ -71,26 +71,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <section class="contents">
-                                <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>弓</strong></h2>
-                                <div class="row">
-                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>属性攻撃値</label></div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="elementalAttackPower" required="" placeholder="0" min="0" max="65535" step="1"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>距離補正</label></div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="checkbox"><label><input type="checkbox">クリティカル</label></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section class="contents">
+                            <section class="contents bowgun">
                                 <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>ボウガン</strong></h2>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -117,6 +98,25 @@
                                     </div>
                                 </div>
                             </section>
+                            <section class="contents bow">
+                                <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>弓</strong></h2>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>属性攻撃値</label></div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="elementalAttackPower" required="" placeholder="0" min="0" max="65535" step="1"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>距離補正</label></div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="checkbox"><label><input type="checkbox">クリティカル</label></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                             <section class="contents">
                                 <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>スキル情報</strong></h2>
                                 <div class="table-responsive">
@@ -127,68 +127,7 @@
                                                 <th>レベル</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>攻撃</td>
-                                                <td><span class="label label-default">プレイヤーの攻撃力を上げる。レベルが上がると会心率にも影響がある。<br></span><select class="form-control" name="attack"><option value="0">未発動</option><optgroup label="基礎攻撃力"><option value="1">Lv1：＋3 </option><option value="2">Lv2：＋6 </option><option value="3">Lv3：＋9 </option><option value="4">Lv4：＋12、会心率＋5% </option><option value="5">Lv5：＋15、会心率＋5% </option><option value="6">Lv6：＋18、会心率＋5% </option><option value="7">Lv7：＋21、会心率＋5% </option></optgroup></select></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">フルチャージ<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">体力が最大の時に攻撃力が上がる。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力"><option value="1">Lv1：+5</option><option value="2">Lv2：+10</option><option value="3">Lv3：+20</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">弱点特攻<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">有効部位への攻撃時、会心率アップ<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="モンスターの有効部位への攻撃時、会心率"><option value="1">Lv1：+15%</option><option value="2">Lv2：+30%</option><option value="3">Lv3：+50%</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">挑戦者<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">戦闘中の大型モンスターが怒ると、攻撃力と会心率が上昇する。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力/会心率"><option value="1">Lv1：+4 / +3%</option><option value="2">Lv2：+8 / +6%</option><option value="3">Lv3：+12 / +9%</option><option value="4">Lv4：+16 / +12%</option><option value="5">Lv5：+20 / +15%</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">超会心<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">会心攻撃の際、ダメージが増加する。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="会心攻撃時のダメージ倍率を"><option value="1">Lv1：1.3倍に強化する。</option><option value="2">Lv2：1.35倍に強化する。</option><option value="3">Lv3：1.4倍に強化する。</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">無属性強化<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">装備中の無属性武器を強化する。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><option value="1">Lv1：装備中の無属性武器を強化する。</option></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">渾身<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">スタミナゲージが満タンの時、会心率が上がる。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="効果発動時、会心率"><option value="1">Lv1：+10％</option><option value="2">Lv2：+20％</option><option value="3">Lv3：+30％</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">抜刀術【技】<br></td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">武器出し攻撃の威力が上昇する。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="武器出し攻撃の会心率"><option value="1">Lv1：+30%</option><option value="2">Lv2：+60%</option><option value="3">Lv3：+100%</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:125px;">力の解放</td>
-                                                <td style="padding:0px;width:49px;">
-                                                    <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">特定の条件を満たすと、一定時間会心率が上昇し、スタミナを固定で消費する行動の消費量が軽減される。<br></span></div>
-                                                    <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中"><option value="1">Lv1：会心率+10％・スタミナ消費量10%軽減</option><option value="2">Lv2：会心率+20％・スタミナ消費量20%軽減</option><option value="3">Lv3：会心率+30％・スタミナ消費量30%軽減</option><option value="4">Lv4：会心率+40％・スタミナ消費量40%軽減</option><option value="5">Lv5：会心率+50％・スタミナ消費量50%軽減</option></optgroup></select></div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody></tbody>
                                     </table>
                                 </div>
                             </section>
@@ -203,7 +142,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input class="form-control form-control" type="text" name="expectedDamage1" readonly="" placeholder="未計算"></td>
+                                            <td><input class="form-control input-lg form-control" type="text" name="expectedDamage1" readonly="" placeholder="未計算"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -217,7 +156,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input class="form-control form-control" type="text" name="expectedElementalDamage1" readonly="" placeholder="未計算"></td>
+                                            <td><input class="form-control input-lg form-control" type="text" name="expectedElementalDamage1" readonly="" placeholder="未計算"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -226,238 +165,10 @@
                     </form>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="tab-2">
-                    <form id="form2">
-                        <section class="contents">
-                            <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>武器性能</strong></h2>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>武器種</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><select class="form-control form-control" name="weapon" style="height:46px;"><option value="4.8">大剣</option><option value="3.3">太刀</option><option value="1.4">片手剣</option><option value="3.6" selected="">チャージアックス</option></select></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>武器攻撃力</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="attackPower" required="" placeholder="100" min="0" max="65535" step="1"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>会心率</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="affinity" required="" placeholder="0[%]" min="0" max="65535" step="5"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>属性攻撃力</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="elementalAttackPower" required="" placeholder="0" min="0" max="65535" step="1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="contents">
-                            <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>スキル情報</strong></h2>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>スキル</th>
-                                            <th>レベル</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="width:125px;">攻撃</td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default">プレイヤーの攻撃力を上げる。レベルが上がると会心率にも影響がある。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0">未発動</option><optgroup label="基礎攻撃力"><option value="1">Lv1：＋3 </option><option value="2">Lv2：＋6 </option><option value="3">Lv3：＋9 </option><option value="4">Lv4：＋12、会心率＋5% </option><option value="5">Lv5：＋15、会心率＋5% </option><option value="6">Lv6：＋18、会心率＋5% </option><option value="7">Lv7：＋21、会心率＋5% </option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">フルチャージ<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">体力が最大の時に攻撃力が上がる。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力"><option value="1">Lv1：+5</option><option value="2">Lv2：+10</option><option value="3">Lv3：+20</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">弱点特攻<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">有効部位への攻撃時、会心率アップ<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="モンスターの有効部位への攻撃時、会心率"><option value="1">Lv1：+15%</option><option value="2">Lv2：+30%</option><option value="3">Lv3：+50%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">挑戦者<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">戦闘中の大型モンスターが怒ると、攻撃力と会心率が上昇する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力/会心率"><option value="1">Lv1：+4 / +3%</option><option value="2">Lv2：+8 / +6%</option><option value="3">Lv3：+12 / +9%</option><option value="4">Lv4：+16 / +12%</option><option value="5">Lv5：+20 / +15%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">超会心<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">会心攻撃の際、ダメージが増加する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="会心攻撃時のダメージ倍率を"><option value="1">Lv1：1.3倍に強化する。</option><option value="2">Lv2：1.35倍に強化する。</option><option value="3">Lv3：1.4倍に強化する。</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">無属性強化<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">装備中の無属性武器を強化する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><option value="1">Lv1：装備中の無属性武器を強化する。</option></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">渾身<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">スタミナゲージが満タンの時、会心率が上がる。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="効果発動時、会心率"><option value="1">Lv1：+10％</option><option value="2">Lv2：+20％</option><option value="3">Lv3：+30％</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">抜刀術【技】<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">武器出し攻撃の威力が上昇する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="武器出し攻撃の会心率"><option value="1">Lv1：+30%</option><option value="2">Lv2：+60%</option><option value="3">Lv3：+100%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">力の解放</td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">特定の条件を満たすと、一定時間会心率が上昇し、スタミナを固定で消費する行動の消費量が軽減される。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中"><option value="1">Lv1：会心率+10％・スタミナ消費量10%軽減</option><option value="2">Lv2：会心率+20％・スタミナ消費量20%軽減</option><option value="3">Lv3：会心率+30％・スタミナ消費量30%軽減</option><option value="4">Lv4：会心率+40％・スタミナ消費量40%軽減</option><option value="5">Lv5：会心率+50％・スタミナ消費量50%軽減</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-                        <section class="footer_area">
-                            <div class="form-group footer_area" style="margin:0px;padding:1px;">
-                                <div class="col-lg-2 col-lg-offset-4 col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2 col-xs-7" style="padding:0px;"><label class="control-label" style="margin:0;font-size:21px;">基礎攻撃力期待値：</label></div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5"><input class="form-control form-control" type="text" name="expectedDamage2" readonly="" placeholder="未計算"></div>
-                            </div>
-                        </section>
-                    </form>
+                    <form id="form2"></form>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="tab-3">
-                    <form id="form3">
-                        <section class="contents">
-                            <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>武器性能</strong></h2>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>武器種</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><select class="form-control form-control" name="weapon" style="height:46px;"><option value="4.8">大剣</option><option value="3.3">太刀</option><option value="1.4">片手剣</option><option value="3.6" selected="">チャージアックス</option></select></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>武器攻撃力</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="attackPower" required="" placeholder="100" min="0" max="65535" step="1"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>会心率</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="affinity" required="" placeholder="0[%]" min="0" max="65535" step="5"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><label>属性攻撃力</label></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><input class="form-control input-lg" type="number" name="elementalAttackPower" required="" placeholder="0" min="0" max="65535" step="1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="contents">
-                            <h2 class="text-uppercase text-center" style="font-size:21px;"><strong>スキル情報</strong></h2>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>スキル</th>
-                                            <th>レベル</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="width:125px;">攻撃</td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default">プレイヤーの攻撃力を上げる。レベルが上がると会心率にも影響がある。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0">未発動</option><optgroup label="基礎攻撃力"><option value="1">Lv1：＋3 </option><option value="2">Lv2：＋6 </option><option value="3">Lv3：＋9 </option><option value="4">Lv4：＋12、会心率＋5% </option><option value="5">Lv5：＋15、会心率＋5% </option><option value="6">Lv6：＋18、会心率＋5% </option><option value="7">Lv7：＋21、会心率＋5% </option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">フルチャージ<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">体力が最大の時に攻撃力が上がる。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力"><option value="1">Lv1：+5</option><option value="2">Lv2：+10</option><option value="3">Lv3：+20</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">弱点特攻<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">有効部位への攻撃時、会心率アップ<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="モンスターの有効部位への攻撃時、会心率"><option value="1">Lv1：+15%</option><option value="2">Lv2：+30%</option><option value="3">Lv3：+50%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">挑戦者<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">戦闘中の大型モンスターが怒ると、攻撃力と会心率が上昇する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中、基礎攻撃力/会心率"><option value="1">Lv1：+4 / +3%</option><option value="2">Lv2：+8 / +6%</option><option value="3">Lv3：+12 / +9%</option><option value="4">Lv4：+16 / +12%</option><option value="5">Lv5：+20 / +15%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">超会心<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">会心攻撃の際、ダメージが増加する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="会心攻撃時のダメージ倍率を"><option value="1">Lv1：1.3倍に強化する。</option><option value="2">Lv2：1.35倍に強化する。</option><option value="3">Lv3：1.4倍に強化する。</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">無属性強化<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">装備中の無属性武器を強化する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><option value="1">Lv1：装備中の無属性武器を強化する。</option></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">渾身<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">スタミナゲージが満タンの時、会心率が上がる。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="効果発動時、会心率"><option value="1">Lv1：+10％</option><option value="2">Lv2：+20％</option><option value="3">Lv3：+30％</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">抜刀術【技】<br></td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">武器出し攻撃の威力が上昇する。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="武器出し攻撃の会心率"><option value="1">Lv1：+30%</option><option value="2">Lv2：+60%</option><option value="3">Lv3：+100%</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:125px;">力の解放</td>
-                                            <td style="padding:0px;width:49px;">
-                                                <div class="col-md-12"><span class="label label-default" style="font-size:9.6px;">特定の条件を満たすと、一定時間会心率が上昇し、スタミナを固定で消費する行動の消費量が軽減される。<br></span></div>
-                                                <div class="col-md-12"><select class="form-control form-control"><option value="0" selected="">未発動</option><optgroup label="スキル発動中"><option value="1">Lv1：会心率+10％・スタミナ消費量10%軽減</option><option value="2">Lv2：会心率+20％・スタミナ消費量20%軽減</option><option value="3">Lv3：会心率+30％・スタミナ消費量30%軽減</option><option value="4">Lv4：会心率+40％・スタミナ消費量40%軽減</option><option value="5">Lv5：会心率+50％・スタミナ消費量50%軽減</option></optgroup></select></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-                        <section class="footer_area">
-                            <div class="form-group footer_area" style="margin:0px;padding:1px;">
-                                <div class="col-lg-2 col-lg-offset-4 col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2 col-xs-7" style="padding:0px;"><label class="control-label" style="margin:0;font-size:21px;">基礎攻撃力期待値：</label></div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5"><input class="form-control form-control" type="text" name="expectedDamage3" readonly="" placeholder="未計算"></div>
-                            </div>
-                        </section>
-                    </form>
+                    <form id="form3"></form>
                 </div>
             </div>
         </div>
