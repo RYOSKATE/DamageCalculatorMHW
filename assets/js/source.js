@@ -1,5 +1,8 @@
 //初期化
 $(function () {
+  for(var i=2; i<=3; ++i){
+      $("#form1").clone(true).appendTo("#tab-"+i).attr('id',"form"+i);
+  }    
   setWeapons(data["weapon"]);
   setSharpness(data["sharpnesses"]);
   setAmmo(data["ammo"]);
@@ -73,6 +76,7 @@ function showWeaponSection(formId) {
 function changeSharpnessBgColor(formId) {
   var sharpnessesForm = $(formId + ' select[name=sharpness] option:selected');
   var selectedSharpness = sharpnessesForm.text();
+  if(selectedSharpness === '')return;
   var sharpnesses = data["sharpnesses"];
   var color = sharpnesses[selectedSharpness]["bg-color"];
   $(formId + ' select[name=sharpness]').css("background-color", color);
@@ -102,8 +106,8 @@ function getFormData(formId) {
 
 function updataAll() {
   updateExpectedDamage(1);
-  //updateExpectedDamage(2);
-  //updateExpectedDamage(3);
+  updateExpectedDamage(2);
+  updateExpectedDamage(3);
 }
 function updateExpectedDamage(formNumber) {
   var formId = "#form" + formNumber;
@@ -116,6 +120,6 @@ function updateExpectedDamage(formNumber) {
   //会心率
   expectedDamage = Math.floor(expectedDamage);
   var expectedElementalDamage = Math.floor(data["elementalAttackPower"] / 10);//属性
-  $("input[name=expectedDamage" + formNumber + "]").val(expectedDamage);
-  $("input[name=expectedElementalDamage" + formNumber + "]").val(expectedElementalDamage);
+  $(formId+" input[name=expectedDamage]").val(expectedDamage);
+  $(formId+" input[name=expectedElementalDamage]").val(expectedElementalDamage);
 }
