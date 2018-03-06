@@ -1,41 +1,9 @@
-var data = {
-    "weapon":{
-        "大剣":4.8,
-        "太刀":3.3,
-        "片手剣":1.4,
-        "チャージアックス":3.6
-    },
-    "sharpnesses":{
-        "赤":0.25,
-        "橙":0.5, 
-        "黄":0.75, 
-        "緑":1.0,
-        "青":1.0625, 
-        "白":1.125
-    },
-    "ammo":{
-        "Lv1通常弾":10,
-        "Lv2通常弾":20,
-        "Lv3通常弾":32,
-        "Lv1貫通弾":7,
-        "Lv2貫通弾":7,
-        "Lv3貫通弾":8,
-        "Lv1散弾(3hit)":6,
-        "Lv2散弾(5hit)":7, 
-        "Lv3散弾(7hit)":8,
-        "属性弾(火,水,雷,氷)":{"弾":5,"属":27},
-        "属性弾(龍)":{"弾":2,"属":18}
-    },
-    "skill":{
-        "攻撃":{"text":プレイヤーの攻撃力を上げる。レベルが上がると会心率にも影響がある。},
-        "フルチャージ":{"text":"体力が最大の時に攻撃力が上がる。"},
-    }
-};
 //初期化
 $(function(){
   setWeapons(data["weapon"]);
   setSharpness(data["sharpnesses"]);
   setAmmo(data["ammo"]);
+  setSkill(data["skill"]);
 });
 
 //武器種
@@ -56,6 +24,26 @@ function setSharpness(sharpnesses){
 function setAmmo(ammo){
   for(key in ammo){
     $("select[name=ammo]").append($("<option>").val(ammo[key]).text(key));
+  }	
+}
+
+//スキル
+function setSkill(skills){
+  for(key in skills){
+    var skill = skills[key];
+    var nameCell = "<td>" + skill["name"] + "</td>";
+    var label = '<span class="label label-default">'
+    +skill["text"]+"<br /></span>";
+    var select = '<select class="form-control" name="'+key+'"></select>';
+    var levelCell = "<td>" + label + select +"</td>";  
+    var rawData = "<tr>"+nameCell+levelCell+"</tr>"
+    
+    $('.skill-table').append( rawData );
+    var effects = skill["effects"];
+    $("select[name="+key+"]").append($("<option>").text("未発動"));
+    for(var i=0; i<effects.length; ++i){
+      $("select[name="+key+"]").append($("<option>").val(i).text("Lv"+(i+1)+":"+effects[i]["text"]));
+    }	
   }	
 }
 
