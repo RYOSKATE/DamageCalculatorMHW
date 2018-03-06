@@ -7,6 +7,7 @@ $(function () {
   setSharpness(data["sharpnesses"]);
   setAmmo(data["ammo"]);
   setSkill(data["skill"]);
+  $('#sortdata').sortable();
   updataAll();
 });
 
@@ -49,8 +50,24 @@ function setSkill(skills) {
     var effects = skill["effects"];
     $("select[name=" + key + "]").append($("<option>").val(-1).text("未発動"));
     for (var i = 0; i < effects.length; ++i) {
-      $("select[name=" + key + "]").append($("<option>").val(i).text("Lv" + (i + 1) + ":" + effects[i]["text"]));
+      $("select[name=" + key + "]").append(
+        $("<option>").val(i).text("Lv" + (i + 1) + ":" + effects[i]["text"])
+          .css("background-color", "white"));
     }
+    $("select[name=" + key + "]").css("background-color", "rgb(200,200,200)");
+    $("select[name=" + key + "]").change(function () {
+      //選択したvalue値を変数に格納
+      var val = $(this).val();
+      var lastVal = $(this).children('option').length - 2;
+      //選択したvalue値をp要素に出力
+      if (val == -1) {
+        $(this).css("background-color", "rgb(200,200,200)");
+      } else if (val == lastVal) {
+        $(this).css("background-color", "rgb(204,153,255)");
+      } else {
+        $(this).css("background-color", "white");
+      }
+    });
   }
 }
 
@@ -77,6 +94,7 @@ function showWeaponSection(formId) {
   }
 }
 
+//切れ味selectの背景色を選択されたものに変更
 function changeSharpnessBgColor(formId) {
   var sharpnessesForm = $(formId + ' select[name=sharpness] option:selected');
   var selectedSharpness = sharpnessesForm.text();
