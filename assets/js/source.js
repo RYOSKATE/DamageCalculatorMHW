@@ -1,8 +1,8 @@
 //初期化
 $(function () {
-  for(var i=2; i<=3; ++i){
-      $("#form1").clone(true).appendTo("#tab-"+i).attr('id',"form"+i);
-  }    
+  for (var i = 2; i <= 3; ++i) {
+    $("#form1").clone(true).appendTo("#tab-" + i).attr('id', "form" + i);
+  }
   setWeapons(data["weapon"]);
   setSharpness(data["sharpnesses"]);
   setAmmo(data["ammo"]);
@@ -20,9 +20,10 @@ function setWeapons(weapons) {
 
 //切れ味
 function setSharpness(sharpnesses) {
+  var i = 0;
   for (key in sharpnesses) {
     var sharpness = sharpnesses[key];
-    $("select[name=sharpness]").append($("<option>").val(sharpness).text(key).css('background-color', sharpness["bg-color"]));
+    $("select[name=sharpness]").append($("<option>").val(i++).text(key).css('background-color', sharpness["bg-color"]));
   }
 }
 
@@ -46,7 +47,7 @@ function setSkill(skills) {
 
     $('.skill-table').append(rawData);
     var effects = skill["effects"];
-    $("select[name=" + key + "]").append($("<option>").text("未発動"));
+    $("select[name=" + key + "]").append($("<option>").val(-1).text("未発動"));
     for (var i = 0; i < effects.length; ++i) {
       $("select[name=" + key + "]").append($("<option>").val(i).text("Lv" + (i + 1) + ":" + effects[i]["text"]));
     }
@@ -61,22 +62,25 @@ function showWeaponSection(formId) {
     $(formId + ' .fencer').hide();
     $(formId + ' .bowgun').hide();
     $(formId + ' .bow').fadeIn();
+    return "bow";
   } else if (weapon[weaponName] == 1.3
     || weapon[weaponName] == 1.5) {
     $(formId + ' .fencer').hide();
     $(formId + ' .bowgun').fadeIn();
     $(formId + ' .bow').hide();
+    return "bowgun";
   } else {
     $(formId + ' .fencer').fadeIn();
     $(formId + ' .bowgun').hide();
     $(formId + ' .bow').hide();
+    return "fencer";
   }
 }
 
 function changeSharpnessBgColor(formId) {
   var sharpnessesForm = $(formId + ' select[name=sharpness] option:selected');
   var selectedSharpness = sharpnessesForm.text();
-  if(selectedSharpness === '')return;
+  if (selectedSharpness === '') return;
   var sharpnesses = data["sharpnesses"];
   var color = sharpnesses[selectedSharpness]["bg-color"];
   $(formId + ' select[name=sharpness]').css("background-color", color);
@@ -109,17 +113,37 @@ function updataAll() {
   updateExpectedDamage(2);
   updateExpectedDamage(3);
 }
+
+function calcAddBaseAttack(data) {
+  return 1;
+}
+function calcMulBaseAttack(data) {
+  return 1;
+}
+function calcAddAffinity(data) {
+  return 1;
+}
+function calcMulAffinity(data) {
+  return 1.25;
+}
+function getSharpnesses(data) {
+  return 1;
+}
 function updateExpectedDamage(formNumber) {
   var formId = "#form" + formNumber;
-  showWeaponSection(formId);
+  var type = showWeaponSection(formId);
   changeSharpnessBgColor(formId);
   //フォーム内の要素に変更があると発火    
   var data = getFormData(formId);
-  expectedDamage = data["attackPower"] / data["weapon"];//基礎攻撃力
-  expectedDamage *= (1 + (0.25 * data["affinity"] / 100));
+
+  var baseAttackDamage = ((data["attackPower"] / data["weapon"])
+    + calcAddBaseAttack(data)) * calcMulBaseAttack(data);//基礎攻撃力
+  var criticalRate = data["affinity"] + calcAddAffinity(data);
+  var expectedDamage = (baseAttackDamage * criticalRate * calcMulAffinity(data)
+    + baseAttackDamage * (100 - criticalRate)) / 100;
   //会心率
   expectedDamage = Math.floor(expectedDamage);
   var expectedElementalDamage = Math.floor(data["elementalAttackPower"] / 10);//属性
-  $(formId+" input[name=expectedDamage]").val(expectedDamage);
-  $(formId+" input[name=expectedElementalDamage]").val(expectedElementalDamage);
+  $(formId + " input[name=expectedDamage]").val(expectedDamage);
+  $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
 }
