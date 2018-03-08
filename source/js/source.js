@@ -1,14 +1,13 @@
 //初期化
 $(function () {
-  for (var i = 2; i <= 3; ++i) {
-    $("#form1").clone(true).appendTo("#tab-" + i).attr('id', "form" + i);
-  }
   setWeapons(data["weapon"]);
   setSharpness(data["sharpnesses"]);
   setAmmo(data["ammo"]);
   setSkill(data["skill"]);
   $('#sortdata').sortable();
-  updataAll();
+  for (var i = 2; i <= 3; ++i) {
+    $("#form1").clone(true).appendTo("#tab-" + i).attr('id', "form" + i);
+  }
 });
 
 //武器種
@@ -25,6 +24,7 @@ function setSharpness(sharpnesses) {
     var sharpness = sharpnesses[key];
     $("select[name=sharpness]").append($("<option>").val(key).text(key).css('background-color', sharpness["bg-color"]));
   }
+  $("select[name=sharpness]").css("background-color", "rgb(200, 200, 200)");
 }
 
 //弾薬
@@ -102,12 +102,24 @@ function changeSharpnessBgColor(formId) {
   $(formId + ' select[name=sharpness]').css("background-color", color);
 }
 
-$("form").change(function () {
-  updataAll();
+$("form").change(function (e) {
+  update(e);
 });
 $("form").keyup(function (e) {
-  updataAll();
+  update(e);
 });
+
+function update(e) {
+  var target = $(e.target);
+  var tagName = target.prop("tagName");
+  do {
+    target = target.parent();
+    tagName = target.prop("tagName");
+  } while (tagName != "FORM");
+  var id = target.attr("id");
+  updateExpectedDamage(id.replace("form", ""));
+}
+
 function getFormData(formId) {
   var $form = $(formId);
   var query = $form.serialize();
