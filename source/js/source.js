@@ -30,7 +30,7 @@ function setSharpness(sharpnesses) {
 //弾薬
 function setAmmo(ammo) {
   for (key in ammo) {
-    $("select[name=ammo]").append($("<option>").val(ammo[key]).text(key));
+    $("select[name=ammo]").append($("<option>").val(key).text(key));
   }
 }
 
@@ -160,22 +160,126 @@ function getSharpnesses(formData, type) {
   var val = data["sharpnesses"][sharpness][type];
   return val;
 }
+
+function isString(obj) {
+  return typeof (obj) == "string" || obj instanceof String;
+};
+
+function getSkillEffects(formData) {
+  var powerUpValues = { "addAttack": 0, "addAffinity": 0, "mulAttack": 0, "mulAffinity": 0 };
+  for (var skill in data["skill"]) {
+    var value = formData[skill];
+    if (!isNaN(value)) {
+      var val = Number(value);
+      if (0 <= val) {
+        var effect = data["skill"][skill]["effects"][val];
+        for (var prop in effect) {
+          if (prop != "text") {
+            powerUpValues[prop] += effect[prop];
+          }
+        }
+      }
+    }
+  }
+  return powerUpValues;
+}
+
+//基礎攻撃力
+function calcbaseAttackDamage(formData, powerUpValues) {
+  var baseAttackDamage = formData["attackPower"] / formData["weapon"];
+  baseAttackDamage += powerUpValues["addAttack"];
+  baseAttackDamage *= Math.max(1, powerUpValues["mulAttack"]);
+  return baseAttackDamage;
+}
+
+//会心補正
+function calcCriticalRate(formData, powerUpValues) {
+  var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
+  var critical = Math.max(1.25, powerUpValues["mulAffinity"]);
+  var ratioRatio = ((critical - 1) * affinity + 100) / 100;
+  return ratioRatio;
+}
+
+//属性会心
+function calcElementalCrit(formData, powerUpValues) {
+  var elementalCritValue = 1.0;
+  var elementalCrit = formData["elemental-crit"];
+  if (0 <= elementalCrit) {
+    // 片手剣、双剣、弓	1.35
+    // ライトボウガン、ヘビィボウガン	1.3
+    // 大剣	1.2
+    // その他	1.25
+  }
+  return elementalCritValue;
+}
+
 function updateExpectedDamage(formNumber) {
   var formId = "#form" + formNumber;
+  $(formId + " input[name=expectedDamage]").val("");
+  $(formId + " input[name=expectedElementalDamage]").val("");
+
   var type = showWeaponSection(formId);
   changeSharpnessBgColor(formId);
-  //フォーム内の要素に変更があると発火    
-  var formData = getFormData(formId);
 
-  var baseAttackDamage = ((formData["attackPower"] / formData["weapon"])
-    + calcAddBaseAttack(formData)) * getSharpnesses(formData, "物") * calcMulBaseAttack(formData);//基礎攻撃力
-  var criticalRate = formData["affinity"] + calcAddAffinity(formData);
-  var expectedDamage = (baseAttackDamage * criticalRate * calcMulAffinity(formData)
-    + baseAttackDamage * (100 - criticalRate)) / 100;
+  var formData = getFormData(formId);//フォームの値
+  var powerUpValues = getSkillEffects(formData);//攻撃と会心
+
+  //基礎攻撃力
+  var baseAttackDamage = calcbaseAttackDamage(formData, powerUpValues);
+
+  //属性ダメージ(会心補正で初期化)
+  var elementalDamage = calcElementalCrit(formData, powerUpValues);
+
+  if (type === "bowgun") {
+    elementalDamage *= baseAttackDamage;
+
+    //距離補正
+    var bowgunBritical = formData["bowgun-critical"];
+    if (bowgunBritical == "on") {
+      baseAttackDamage *= 1.25;
+    }
+    //速射補正
+    var quieckFire = formData["quick-fire"];
+    if (quieckFire == "on") {
+      baseAttackDamage *= 2;
+    }
+
+    //弾威力
+    var ammo = data["ammo"][formData["ammo"]];
+    if (isNaN(ammo)) {
+      baseAttackDamage *= ammo["弾"];
+      elementalDamage *= ammo["属"];
+    } else {
+      baseAttackDamage *= ammo;
+      elementalDamage = 0;
+    }
+  } else {
+    if (type === "fencer") {
+      elementalDamage *= formData["elementalAttackPower-fencer"] / 10;//武器の属性値
+
+      //切れ味
+      baseAttackDamage *= getSharpnesses(formData, "物");
+      elementalDamage *= getSharpnesses(formData, "属");
+    } else if (type === "bow") {
+      elementalDamage *= formData["elementalAttackPower-bow"] / 10;//武器の属性値
+
+      //距離補正
+      var bowBritical = formData["bow-critical"];
+      if (bowBritical == "on") {
+        baseAttackDamage *= 1.25;
+      }
+    }
+  }
+
   //会心率
-  expectedDamage = Math.floor(expectedDamage);
-  var expectedElementalDamage = Math.floor(formData["elementalAttackPower-fencer"]
-    * getSharpnesses(formData, "属") / 10);//属性
+  var criticalRate = calcCriticalRate(formData, powerUpValues);
+
+  //物理ダメージ
+  var attackDamage = baseAttackDamage * criticalRate;
+
+  var expectedDamage = Math.floor(attackDamage);
+  var expectedElementalDamage = Math.floor(elementalDamage);
+
   if (expectedDamage) {
     $(formId + " input[name=expectedDamage]").val(expectedDamage);
   }
