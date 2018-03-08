@@ -202,15 +202,28 @@ function calcCriticalRate(formData, powerUpValues) {
 
 //属性会心
 function calcElementalCrit(formData, powerUpValues) {
-  var elementalCritValue = 1.0;
+  var elementalCrit = 1.0;
   var elementalCrit = formData["elemental-crit"];
   if (0 <= elementalCrit) {
-    // 片手剣、双剣、弓	1.35
-    // ライトボウガン、ヘビィボウガン	1.3
-    // 大剣	1.2
-    // その他	1.25
+    var w = formData["weapon"];
+    if (w == 1.2 || w == 1.4) {
+      // 片手剣、双剣、弓
+      elementalCrit = 1.35;
+    } else if (w == 1.3 || w == 1.5) {
+      // ライトボウガン、ヘビィボウガン
+      elementalCrit = 1.3;
+    } else if (w == 4.8) {
+      // 大剣
+      elementalCrit = 1.2;
+    } else {
+      // その他
+      elementalCrit = 1.25;
+    }
   }
-  return elementalCritValue;
+
+  var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
+  var ratioRatio = ((elementalCrit - 1) * affinity + 100) / 100;
+  return ratioRatio;
 }
 
 function updateExpectedDamage(formNumber) {
