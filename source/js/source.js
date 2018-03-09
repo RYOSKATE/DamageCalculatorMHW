@@ -23,9 +23,11 @@ function setWeapons(weapons) {
 
 //切れ味
 function setSharpness(sharpnesses) {
-  for (key in sharpnesses) {
-    var sharpness = sharpnesses[key];
-    $("select[name=sharpness]").append($("<option>").val(key).text(key).css('background-color', sharpness["bg-color"]));
+  for (var i = 0; i < sharpnesses.length; ++i) {
+    var sharpness = sharpnesses[i];
+    var name = sharpness.name;
+    var color = sharpness["bg-color"];
+    $("select[name=sharpness]").append($("<option>").val(i).text(name).css('background-color', color));
   }
   $("select[name=sharpness]").css("background-color", "rgb(200, 200, 200)");
 }
@@ -99,9 +101,9 @@ function showWeaponSection(formId) {
 //切れ味selectの背景色を選択されたものに変更
 function changeSharpnessBgColor(formId) {
   var sharpnessesForm = $(formId + ' select[name=sharpness] option:selected');
-  var selectedSharpness = sharpnessesForm.text();
-  var sharpnesses = data["sharpnesses"];
-  var color = sharpnesses[selectedSharpness]["bg-color"];
+  var selectedSharpnessIndex = sharpnessesForm.val();
+  var sharpnesses = getSelectedSharpness(selectedSharpnessIndex);
+  var color = sharpnesses["bg-color"];
   $(formId + ' select[name=sharpness]').css("background-color", color);
 }
 
@@ -142,8 +144,13 @@ function formReset(target) {
     element.value = "";
   });
   target.find('select').each(function (index, element) {
-    element.value = -1;
+    element.value = 0;
   });
+  target.find('.skill-table select').each(function (index, element) {
+    element.value = -1;
+    //色も変える
+  });
+
 }
 
 
@@ -195,7 +202,7 @@ function calcMulAffinity(formData) {
 function getSharpnesses(formData, type) {
   var sharpness = formData["sharpness"];
   if (sharpness == 0) return 1;
-  var val = data["sharpnesses"][sharpness][type];
+  var val = getSelectedSharpness(sharpness)["value"][type];
   return val;
 }
 
@@ -270,7 +277,6 @@ function updateExpectedDamage(formNumber) {
   $(formId + " input[name=expectedElementalDamage]").val("");
 
   var type = showWeaponSection(formId);
-  changeSharpnessBgColor(formId);
 
   var formData = getFormData(formId);//フォームの値
   var powerUpValues = getSkillEffects(formData);//攻撃と会心
@@ -306,6 +312,7 @@ function updateExpectedDamage(formNumber) {
     }
   } else {
     if (type === "fencer") {
+      changeSharpnessBgColor(formId);
       elementalDamage *= formData["elementalAttackPower-fencer"] / 10;//武器の属性値
 
       //切れ味

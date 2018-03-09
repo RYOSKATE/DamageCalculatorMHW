@@ -15,15 +15,15 @@ var data = {
         { "name": "ヘヴィボウガン", "value": 1.5 },
         { "name": "弓", "value": 1.2 },
     ],
-    "sharpnesses": {
-        "": { "物": 1.0, "属": 1.0, "bg-color": "rgb(200, 200, 200)" },
-        "赤": { "物": 0.5, "属": 0.25, "bg-color": "rgb(255, 153, 204)" },
-        "橙": { "物": 0.75, "属": 0.5, "bg-color": "rgb(255, 204, 153)" },
-        "黄": { "物": 1.0, "属": 0.75, "bg-color": "rgb(255, 255, 153)" },
-        "緑": { "物": 1.05, "属": 1.0, "bg-color": "rgb(204, 255, 153)" },
-        "青": { "物": 1.20, "属": 1.0625, "bg-color": "rgb(153, 153, 255)" },
-        "白": { "物": 1.32, "属": 1.125, "bg-color": "rgb(255, 255, 255)" },
-    },
+    "sharpnesses": [
+        { "name": "", "value": { "物": 1.0, "属": 1.0 }, "bg-color": "rgb(200, 200, 200)" },
+        { "name": "赤", "value": { "物": 0.5, "属": 0.25 }, "bg-color": "rgb(255, 153, 204)" },
+        { "name": "橙", "value": { "物": 0.75, "属": 0.5 }, "bg-color": "rgb(255, 204, 153)" },
+        { "name": "黄", "value": { "物": 1.0, "属": 0.75 }, "bg-color": "rgb(255, 255, 153)" },
+        { "name": "緑", "value": { "物": 1.05, "属": 1.0 }, "bg-color": "rgb(204, 255, 153)" },
+        { "name": "青", "value": { "物": 1.20, "属": 1.0625 }, "bg-color": "rgb(153, 153, 255)" },
+        { "name": "白", "value": { "物": 1.32, "属": 1.125 }, "bg-color": "rgb(255, 255, 255)" },
+    ],
     "ammo": {
         "Lv1通常弾": 10,
         "Lv2通常弾": 20,
@@ -151,4 +151,8 @@ var data = {
 
 function getSelectedWeapon(index) {
     return data["weapon"][index];
+}
+
+function getSelectedSharpness(index) {
+    return data["sharpnesses"][index];
 }
