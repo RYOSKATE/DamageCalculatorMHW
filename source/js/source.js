@@ -109,13 +109,7 @@ function changeSharpnessBgColor(formId) {
   $(formId + ' select[name=sharpness]').css("background-color", color);
 }
 
-$("form").change(function (e) {
-  update(e);
-});
-$("form").keyup(function (e) {
-  update(e);
-});
-
+//リセットボタンによるフォームのクリア
 $(".all-reset").on("click", function (e) {
   var target = $(e.target);
   var tagName = target.prop("tagName");
@@ -151,9 +145,18 @@ function formReset(target) {
   target.find('.skill-table select').each(function (index, element) {
     element.value = -1;
     //色も変える
+    $("select[name=" + element.name + "]").css("background-color", "rgb(200,200,200)");
   });
 
 }
+
+//フォーム内容の変更時に更新
+$("form").change(function (e) {
+  update(e);
+});
+$("form").keyup(function (e) {
+  update(e);
+});
 
 
 function update(e) {
@@ -183,34 +186,12 @@ function getFormData(formId) {
   return formData;
 }
 
-function updataAll() {
-  updateExpectedDamage(1);
-  updateExpectedDamage(2);
-  updateExpectedDamage(3);
-}
-
-function calcAddBaseAttack(formData) {
-  return 1;
-}
-function calcMulBaseAttack(formData) {
-  return 1;
-}
-function calcAddAffinity(formData) {
-  return 1;
-}
-function calcMulAffinity(formData) {
-  return 1.25;
-}
 function getSharpnesses(formData, type) {
   var sharpness = formData["sharpness"];
   if (sharpness == 0) return 1;
   var val = getSelectedSharpness(sharpness)["value"][type];
   return val;
 }
-
-function isString(obj) {
-  return typeof (obj) == "string" || obj instanceof String;
-};
 
 function getSkillEffects(formData) {
   var powerUpValues = { "addAttack": 0, "addAffinity": 0, "mulAttack": 0, "mulAffinity": 0 };

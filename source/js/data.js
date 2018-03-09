@@ -160,3 +160,7 @@ function getSelectedSharpness(index) {
 function getSelectedAmmo(index) {
     return data["ammo"][index];
 }
+
+function isString(obj) {
+    return typeof (obj) == "string" || obj instanceof String;
+};
