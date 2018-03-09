@@ -109,6 +109,13 @@ $("form").keyup(function (e) {
   update(e);
 });
 
+$(".reset-btn").on("click", function (e) {
+  var target = $(e.target);
+  target.find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+  update(e);
+});
+
+
 function update(e) {
   var target = $(e.target);
   var tagName = target.prop("tagName");
