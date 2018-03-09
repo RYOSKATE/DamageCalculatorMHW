@@ -34,8 +34,10 @@ function setSharpness(sharpnesses) {
 
 //弾薬
 function setAmmo(ammo) {
-  for (key in ammo) {
-    $("select[name=ammo]").append($("<option>").val(key).text(key));
+  for (var i = 0; i < ammo.length; ++i) {
+    var name = ammo[i].name;
+    var value = ammo[i].value;
+    $("select[name=ammo]").append($("<option>").val(i).text(name));
   }
 }
 
@@ -302,12 +304,13 @@ function updateExpectedDamage(formNumber) {
     }
 
     //弾威力
-    var ammo = data["ammo"][formData["ammo"]];
-    if (isNaN(ammo)) {
-      baseAttackDamage *= ammo["弾"];
-      elementalDamage *= ammo["属"];
+    var ammo = getSelectedAmmo(formData["ammo"]);
+    var ammoValue = ammo["value"];
+    if (isNaN(ammoValue)) {
+      baseAttackDamage *= ammoValue["弾"];
+      elementalDamage *= ammoValue["属"];
     } else {
-      baseAttackDamage *= ammo;
+      baseAttackDamage *= ammoValue;
       elementalDamage = 0;
     }
   } else {

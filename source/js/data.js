@@ -24,20 +24,20 @@ var data = {
         { "name": "青", "value": { "物": 1.20, "属": 1.0625 }, "bg-color": "rgb(153, 153, 255)" },
         { "name": "白", "value": { "物": 1.32, "属": 1.125 }, "bg-color": "rgb(255, 255, 255)" },
     ],
-    "ammo": {
-        "Lv1通常弾": 10,
-        "Lv2通常弾": 20,
-        "Lv3通常弾": 32,
-        "Lv1貫通弾": 7,
-        "Lv2貫通弾": 7,
-        "Lv3貫通弾": 8,
-        "Lv1散弾(3hit)": 6,
-        "Lv2散弾(5hit)": 7,
-        "Lv3散弾(7hit)": 8,
-        "属性弾(火,水,雷,氷)": { "弾": 5, "属": 27 },
-        "属性弾(龍)": { "弾": 2, "属": 18 },
-        "斬裂弾(5hit)": { "弾": 1, "属": 31.5 }
-    },
+    "ammo": [
+        { "name": "Lv1通常弾", "value": 10 },
+        { "name": "Lv2通常弾", "value": 20 },
+        { "name": "Lv3通常弾", "value": 32 },
+        { "name": "Lv1貫通弾", "value": 7 },
+        { "name": "Lv2貫通弾", "value": 7 },
+        { "name": "Lv3貫通弾", "value": 8 },
+        { "name": "Lv1散弾(3hit)", "value": 6 },
+        { "name": "Lv2散弾(5hit)", "value": 7 },
+        { "name": "Lv3散弾(7hit)", "value": 8 },
+        { "name": "属性弾(火,水,雷,氷)", "value": { "弾": 5, "属": 27 } },
+        { "name": "属性弾(龍)", "value": { "弾": 2, "属": 18 } },
+        { "name": "斬裂弾(5hit)", "value": { "弾": 1, "属": 31.5 } }
+    ],
     "skill": {
         "attack": {
             "name": "攻撃",
@@ -155,4 +155,8 @@ function getSelectedWeapon(index) {
 
 function getSelectedSharpness(index) {
     return data["sharpnesses"][index];
+}
+
+function getSelectedAmmo(index) {
+    return data["ammo"][index];
 }
