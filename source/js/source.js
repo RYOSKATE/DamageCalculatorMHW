@@ -45,7 +45,7 @@ function setAmmo(ammo) {
 function setSkill(skills) {
   for (key in skills) {
     var skill = skills[key];
-    var nameCell = "<td>" + skill["name"] + "</td>";
+    var nameCell = '<td class="skill-name-cell">' + skill["name"] + "</td>";
     var label = '<span class="label label-default">'
       + skill["text"] + "<br /></span>";
     var select = '<select class="form-control" name="' + key + '"></select>';
