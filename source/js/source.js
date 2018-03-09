@@ -109,11 +109,39 @@ $("form").keyup(function (e) {
   update(e);
 });
 
-$(".reset-btn").on("click", function (e) {
+$(".all-reset").on("click", function (e) {
   var target = $(e.target);
-  target.find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+  var tagName = target.prop("tagName");
+  do {
+    target = target.parent();
+    tagName = target.prop("tagName");
+  } while (tagName != "FORM");
+  formReset(target);
   update(e);
 });
+
+$(".reset-btn").on("click", function (e) {
+  var target = $(e.target);
+  var tagName = target.prop("tagName");
+  do {
+    target = target.parent();
+    tagName = target.prop("tagName");
+  } while (tagName != "SECTION");
+  formReset(target);
+  update(e);
+});
+
+function formReset(target) {
+  target.find('input[type="check"]').each(function (index, element) {
+    element.checked = false;
+  });
+  target.find('input[type="number"]').each(function (index, element) {
+    element.value = "";
+  });
+  target.find('select').each(function (index, element) {
+    element.value = -1;
+  });
+}
 
 
 function update(e) {
