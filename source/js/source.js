@@ -12,8 +12,11 @@ $(function () {
 
 //武器種
 function setWeapons(weapons) {
-  for (key in weapons) {
-    $("select[name=weapon]").append($("<option>").val(weapons[key]).text(key));
+  for (var i = 0; i < weapons.length; ++i) {
+    var weapon = weapons[i];
+    var name = weapon.name;
+    var value = weapon.value;
+    $("select[name=weapon]").append($("<option>").val(i).text(name));
   }
   showWeaponSection("");
 }
@@ -72,15 +75,15 @@ function setSkill(skills) {
 
 //以下はユーザーの選択変更時の処理
 function showWeaponSection(formId) {
-  var weaponName = $(formId + ' select[name=weapon] option:selected').text()
-  var weapon = data["weapon"];
-  if (weapon[weaponName] == 1.2) {
+  var weaponIndex = $(formId + ' select[name=weapon] option:selected').val()
+  var selectedWeaponValue = getSelectedWeapon(weaponIndex).value;
+  if (selectedWeaponValue == 1.2) {
     $(formId + ' .fencer').hide();
     $(formId + ' .bowgun').hide();
     $(formId + ' .bow').fadeIn();
     return "bow";
-  } else if (weapon[weaponName] == 1.3
-    || weapon[weaponName] == 1.5) {
+  } else if (selectedWeaponValue == 1.3
+    || selectedWeaponValue == 1.5) {
     $(formId + ' .fencer').hide();
     $(formId + ' .bowgun').fadeIn();
     $(formId + ' .bow').hide();
@@ -221,7 +224,8 @@ function getSkillEffects(formData) {
 
 //基礎攻撃力
 function calcbaseAttackDamage(formData, powerUpValues) {
-  var baseAttackDamage = formData["attackPower"] / formData["weapon"];
+  var selectedWeapon = getSelectedWeapon(formData["weapon"]);
+  var baseAttackDamage = formData["attackPower"] / selectedWeapon["value"];
   baseAttackDamage += powerUpValues["addAttack"];
   baseAttackDamage *= Math.max(1, powerUpValues["mulAttack"]);
   return baseAttackDamage;
@@ -238,9 +242,8 @@ function calcCriticalRate(formData, powerUpValues) {
 //属性会心
 function calcElementalCrit(formData, powerUpValues) {
   var elementalCrit = 1.0;
-  var elementalCrit = formData["elemental-crit"];
-  if (0 <= elementalCrit) {
-    var w = formData["weapon"];
+  if (0 <= formData["elemental-crit"]) {
+    var w = getSelectedWeapon(formData["weapon"]).value;
     if (w == 1.2 || w == 1.4) {
       // 片手剣、双剣、弓
       elementalCrit = 1.35;
@@ -254,11 +257,11 @@ function calcElementalCrit(formData, powerUpValues) {
       // その他
       elementalCrit = 1.25;
     }
+    var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
+    var ratioRatio = ((elementalCrit - 1) * affinity + 100) / 100;
+    return ratioRatio;
   }
-
-  var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
-  var ratioRatio = ((elementalCrit - 1) * affinity + 100) / 100;
-  return ratioRatio;
+  return elementalCrit;
 }
 
 function updateExpectedDamage(formNumber) {
