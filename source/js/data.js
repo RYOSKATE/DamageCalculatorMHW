@@ -71,7 +71,7 @@ var data = {
             "effects": [
                 { "text": "スキル発動中、基礎攻撃力+5", "addAttack": 5 },
                 { "text": "スキル発動中、基礎攻撃力+10", "addAttack": 10 },
-                { "text": "スキル発動中、基礎攻撃力+15", "addAttack": 15 },
+                { "text": "スキル発動中、基礎攻撃力+20", "addAttack": 20 },
             ]
         },
         "Weakness-exploit": {
