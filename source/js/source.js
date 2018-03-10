@@ -283,16 +283,37 @@ function updateExpectedDamage(formNumber) {
     if (quieckFire == "on") {
       baseAttackDamage *= 2;
     }
+    //会心率
+    var criticalRate = calcCriticalRate(formData, powerUpValues);
+
+    //物理ダメージ
+    var attackDamage = baseAttackDamage * criticalRate;
+
+    //弾攻撃力
+    var ammoDamage = attackDamage;
 
     //弾威力
     var ammo = getSelectedAmmo(formData["ammo"]);
     var ammoValue = ammo["value"];
     if (isNaN(ammoValue)) {
-      baseAttackDamage *= ammoValue["弾"];
+      ammoDamage *= ammoValue["弾"];
       elementalDamage *= ammoValue["属"];
     } else {
-      baseAttackDamage *= ammoValue;
+      ammoDamage *= ammoValue;
       elementalDamage = 0;
+    }
+
+    var expectedDamage = Math.floor(attackDamage);
+    var expectedAmmoDamage = Math.floor(ammoDamage);
+    var expectedElementalDamage = Math.floor(elementalDamage);
+    if (expectedDamage) {
+      $(formId + " input[name=expectedDamage]").val(expectedDamage);
+    }
+    if (expectedElementalDamage) {
+      $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
+    }
+    if (expectedAmmoDamage) {
+      $(formId + " input[name=expectedAmmoDamage]").val(expectedAmmoDamage);
     }
   } else {
     if (type === "fencer") {
@@ -328,4 +349,5 @@ function updateExpectedDamage(formNumber) {
   if (expectedElementalDamage) {
     $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
   }
+
 }
