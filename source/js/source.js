@@ -178,7 +178,7 @@ function getFormData(formId) {
   for (var i = 0; i < params.length; ++i) {
     var param = params[i];
     if (param["value"]) {
-      formData[param["name"]] = param["value"];
+      formData[param["name"]] = Number(param["value"]);
     } else {
       formData[param["name"]] = 0;
     }
@@ -223,9 +223,10 @@ function calcbaseAttackDamage(formData, powerUpValues) {
 
 //会心補正
 function calcCriticalRate(formData, powerUpValues) {
-  var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
+  var affinity = powerUpValues["addAffinity"] + formData["affinity"];
+  affinity = Math.min(100, affinity);
   var critical = Math.max(1.25, powerUpValues["mulAffinity"]);
-  var ratioRatio = ((critical - 1) * affinity + 100) / 100;
+  var ratioRatio = 1 + ((critical - 1) * affinity / 100);
   return ratioRatio;
 }
 
@@ -247,8 +248,9 @@ function calcElementalCrit(formData, powerUpValues) {
       // その他
       elementalCrit = 1.25;
     }
-    var affinity = Math.min(100, formData["affinity"] + powerUpValues["addAffinity"]);
-    var ratioRatio = ((elementalCrit - 1) * affinity + 100) / 100;
+    var affinity = powerUpValues["addAffinity"] + formData["affinity"];;
+    affinity = Math.min(100, affinity);
+    var ratioRatio = 1 + ((elementalCrit - 1) * affinity / 100);
     return ratioRatio;
   }
   return elementalCrit;
