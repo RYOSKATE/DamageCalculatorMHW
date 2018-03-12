@@ -212,12 +212,35 @@ function getSkillEffects(formData) {
   return powerUpValues;
 }
 
+function isElemental(type, formData) {
+  if (type == "fencer") {
+    if (0 < formData["elementalAttackPower-fencer"]) {
+      return true;
+    }
+  }
+  else if (type == "bow") {
+    if (0 < formData["elementalAttackPower-bow"]) {
+      return true;
+    }
+  } else {
+    //弾威力
+    var ammo = getSelectedAmmo(formData["ammo"]);
+    var ammoValue = ammo["value"];
+    if (isNaN(ammoValue)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 //基礎攻撃力
-function calcbaseAttackDamage(formData, powerUpValues) {
+function calcbaseAttackDamage(type, formData, powerUpValues) {
   var selectedWeapon = getSelectedWeapon(formData["weapon"]);
   var baseAttackDamage = formData["attackPower"] / selectedWeapon["value"];
   baseAttackDamage += powerUpValues["addAttack"];
-  baseAttackDamage *= Math.max(1, powerUpValues["mulAttack"]);
+  if (!isElemental(type, formData)) {
+    baseAttackDamage *= Math.max(1, powerUpValues["mulAttack"]);
+  }
   return baseAttackDamage;
 }
 
@@ -267,7 +290,7 @@ function updateExpectedDamage(formNumber) {
   var powerUpValues = getSkillEffects(formData);//攻撃と会心
 
   //基礎攻撃力
-  var baseAttackDamage = calcbaseAttackDamage(formData, powerUpValues);
+  var baseAttackDamage = calcbaseAttackDamage(type, formData, powerUpValues);
 
   //属性ダメージ(会心補正で初期化)
   var elementalDamage = calcElementalCrit(formData, powerUpValues);
@@ -334,22 +357,21 @@ function updateExpectedDamage(formNumber) {
         baseAttackDamage *= 1.25;
       }
     }
+
+    //会心率
+    var criticalRate = calcCriticalRate(formData, powerUpValues);
+
+    //物理ダメージ
+    var attackDamage = baseAttackDamage * criticalRate;
+
+    var expectedDamage = Math.floor(attackDamage);
+    var expectedElementalDamage = Math.floor(elementalDamage);
+
+    if (expectedDamage) {
+      $(formId + " input[name=expectedDamage]").val(expectedDamage);
+    }
+    if (expectedElementalDamage) {
+      $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
+    }
   }
-
-  //会心率
-  var criticalRate = calcCriticalRate(formData, powerUpValues);
-
-  //物理ダメージ
-  var attackDamage = baseAttackDamage * criticalRate;
-
-  var expectedDamage = Math.floor(attackDamage);
-  var expectedElementalDamage = Math.floor(elementalDamage);
-
-  if (expectedDamage) {
-    $(formId + " input[name=expectedDamage]").val(expectedDamage);
-  }
-  if (expectedElementalDamage) {
-    $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
-  }
-
 }
