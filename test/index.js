@@ -80,5 +80,24 @@ describe('Nightmare demo', function () {
                     done();
                 });
         });
+        it('双剣', function (done) {
+            new Nightmare({ show: false })
+                .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+                .select('#form1 select[name=weapon]', w["双剣"])
+                .type('#form1 input[name=attackPower]', '238')
+                .type('#form1 input[name=affinity]', '15')
+                .select('#form1 select[name=sharpness]', s["白"])
+                .type('#form1 input[name=elementalAttackPower-fencer]', '150')
+                .select('#form1 select[name=full-chage]', 2)
+                .evaluate(function () {
+                    const baseAttack = $('#form1 input[name=expectedDamage]').val();
+                    return baseAttack;
+                })
+                .end()
+                .then(function (result) {
+                    result.should.equal("260");
+                    done();
+                });
+        });
     });
 });
