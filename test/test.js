@@ -37,7 +37,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.equal(["256", "0"]);
+                result.should.eql(["256", "0"]);
             }).then(done, done);
     });
     it('太刀', function (done) {
@@ -56,7 +56,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.equal(["332", "0"]);
+                result.should.eql(["332", "0"]);
             }).then(done, done);
     });
     it('片手剣', function (done) {
