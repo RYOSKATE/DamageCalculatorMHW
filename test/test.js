@@ -236,7 +236,7 @@ describe('Nightmare demo', function () {
                 })
                 .end()
                 .then(function (result) {
-                    result.should.eql(["252", "19"]);
+                    result.should.eql(["252", "15"]);
                     done();
                 });
         });
