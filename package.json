@@ -1,0 +1,23 @@
+{
+  "name": "damage-calc-mhw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RYOSKATE/DamageCalculatorMHW.git"
+  },
+  "author": "RYOSKATE <ryoskate@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RYOSKATE/DamageCalculatorMHW/issues"
+  },
+  "homepage": "https://github.com/RYOSKATE/DamageCalculatorMHW#readme"
+}
