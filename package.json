@@ -2,12 +2,12 @@
   "name": "damage-calc-mhw",
   "version": "1.0.0",
   "description": "",
-  "main": "test/index.js",
+  "main": "test/test.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha -t 10000"
+    "test": "mocha test/test.js -t 10000"
   },
   "repository": {
     "type": "git",

@@ -72,11 +72,12 @@ describe('Nightmare demo', function () {
                 .select('#form1 select[name=agitator]', 0)
                 .evaluate(function () {
                     const baseAttack = $('#form1 input[name=expectedDamage]').val();
-                    return baseAttack;
+                    const elementAttack = $('#form1 input[name=expectedElementalDamage]').val();
+                    return [baseAttack, elementAttack];
                 })
                 .end()
                 .then(function (result) {
-                    result.should.equal("252");
+                    result.should.eql(["252", "19"]);
                     done();
                 });
         });
@@ -91,11 +92,12 @@ describe('Nightmare demo', function () {
                 .select('#form1 select[name=full-chage]', 2)
                 .evaluate(function () {
                     const baseAttack = $('#form1 input[name=expectedDamage]').val();
-                    return baseAttack;
+                    const elementAttack = $('#form1 input[name=expectedElementalDamage]').val();
+                    return [baseAttack, elementAttack];
                 })
                 .end()
                 .then(function (result) {
-                    result.should.equal("260");
+                    result.should.eql(["260", "16"]);
                     done();
                 });
         });
