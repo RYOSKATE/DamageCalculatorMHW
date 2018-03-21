@@ -115,7 +115,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["215", "0"]);
+                result.should.eql(["258", "0"]);
             }).then(done, done);
     });
     it('狩猟笛', function (done) {
