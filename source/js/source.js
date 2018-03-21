@@ -248,7 +248,10 @@ function calcbaseAttackDamage(type, formData, powerUpValues) {
 function calcCriticalRate(formData, powerUpValues) {
   var affinity = powerUpValues["addAffinity"] + formData["affinity"];
   affinity = Math.min(100, affinity);
-  var critical = Math.max(1.25, powerUpValues["mulAffinity"]);
+  var critical = 1.25;
+  if (0 <= affinity) {
+    critical = Math.max(1.25, powerUpValues["mulAffinity"]);
+  }
   var ratioRatio = 1 + ((critical - 1) * affinity / 100);
   return ratioRatio;
 }
@@ -331,13 +334,13 @@ function updateExpectedDamage(formNumber) {
     var expectedDamage = Math.floor(attackDamage);
     var expectedAmmoDamage = Math.floor(ammoDamage);
     var expectedElementalDamage = Math.floor(elementalDamage);
-    if (expectedDamage) {
+    if (!isNaN(expectedDamage)) {
       $(formId + " input[name=expectedDamage]").val(expectedDamage);
     }
-    if (expectedElementalDamage) {
+    if (!isNaN(expectedElementalDamage)) {
       $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
     }
-    if (expectedAmmoDamage) {
+    if (!isNaN(expectedAmmoDamage)) {
       $(formId + " input[name=expectedAmmoDamage]").val(expectedAmmoDamage);
     }
   } else {
@@ -367,10 +370,10 @@ function updateExpectedDamage(formNumber) {
     var expectedDamage = Math.floor(attackDamage);
     var expectedElementalDamage = Math.floor(elementalDamage);
 
-    if (expectedDamage) {
+    if (!isNaN(expectedDamage)) {
       $(formId + " input[name=expectedDamage]").val(expectedDamage);
     }
-    if (expectedElementalDamage) {
+    if (!isNaN(expectedElementalDamage)) {
       $(formId + " input[name=expectedElementalDamage]").val(expectedElementalDamage);
     }
   }

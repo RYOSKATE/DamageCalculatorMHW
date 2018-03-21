@@ -32,11 +32,12 @@ parallel('剣士', function (done) {
             .select('#form1 select[name=attack]', 6)
             .evaluate(function () {
                 const baseAttack = $('#form1 input[name=expectedDamage]').val();
-                return baseAttack;
+                const elementAttack = $('#form1 input[name=expectedElementalDamage]').val();
+                return [baseAttack, elementAttack];
             })
             .end()
             .then(function (result) {
-                result.should.equal("256");
+                result.should.equal(["256", "0"]);
             }).then(done, done);
     });
     it('太刀', function (done) {
@@ -50,11 +51,12 @@ parallel('剣士', function (done) {
             .select('#form1 select[name=maximum-might]', 2)
             .evaluate(function () {
                 const baseAttack = $('#form1 input[name=expectedDamage]').val();
-                return baseAttack;
+                const elementAttack = $('#form1 input[name=expectedElementalDamage]').val();
+                return [baseAttack, elementAttack]; return baseAttack;
             })
             .end()
             .then(function (result) {
-                result.should.equal("332");
+                result.should.equal(["332", "0"]);
             }).then(done, done);
     });
     it('片手剣', function (done) {
@@ -113,7 +115,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["248", ""]);//1345?
+                result.should.eql(["215", "0"]);
             }).then(done, done);
     });
     it('狩猟笛', function (done) {
@@ -131,7 +133,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["90", ""]);
+                result.should.eql(["90", "0"]);
             }).then(done, done);
     });
     it('ランス', function (done) {
@@ -150,7 +152,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["244", ""]);
+                result.should.eql(["244", "0"]);
             }).then(done, done);
     });
     it('ガンランス', function (done) {
@@ -169,7 +171,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["101", ""]);
+                result.should.eql(["101", "0"]);
             }).then(done, done);
     });
     it('スラッシュアックス', function (done) {
@@ -207,7 +209,7 @@ parallel('剣士', function (done) {
             })
             .end()
             .then(function (result) {
-                result.should.eql(["318", ""]);
+                result.should.eql(["318", "0"]);
             }).then(done, done);
     });
     it('操虫棍', function (done) {
