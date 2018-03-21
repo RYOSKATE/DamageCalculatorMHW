@@ -2,13 +2,12 @@
   "name": "damage-calc-mhw",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "test/index.js",
   "directories": {
-    "doc": "docs",
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -t 10000"
   },
   "repository": {
     "type": "git",
@@ -19,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/RYOSKATE/DamageCalculatorMHW/issues"
   },
-  "homepage": "https://github.com/RYOSKATE/DamageCalculatorMHW#readme"
+  "homepage": "https://github.com/RYOSKATE/DamageCalculatorMHW#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "jquery": "^3.3.1",
+    "mocha": "^5.0.4",
+    "nightmare": "^3.0.0",
+    "vo": "^4.0.2"
+  }
 }
