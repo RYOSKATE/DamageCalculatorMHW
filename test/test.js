@@ -3,7 +3,7 @@ var should = require('chai').should();
 var $ = require('jquery');
 
 describe('Nightmare demo', function () {
-    this.timeout(10000); // Set timeout to 10 seconds, instead of the original 2 seconds
+    this.timeout(100000); // Set timeout to 10 seconds, instead of the original 2 seconds
 
     describe('剣士', function (done) {
         var s = { "": 0, "赤": 1, "橙": 2, "黄": 3, "緑": 4, "青": 5, "白": 6 };
