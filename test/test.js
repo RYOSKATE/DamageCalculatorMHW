@@ -26,6 +26,7 @@ parallel('剣士', function (done) {
     it('大剣', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["大剣"])
             .type('#form1 input[name=attackPower]', '912')
             .select('#form1 select[name=sharpness]', s["青"])
@@ -43,6 +44,7 @@ parallel('剣士', function (done) {
     it('太刀', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["太刀"])
             .type('#form1 input[name=attackPower]', '693')
             .select('#form1 select[name=sharpness]', s["青"])
@@ -62,6 +64,7 @@ parallel('剣士', function (done) {
     it('片手剣', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["片手剣"])
             .type('#form1 input[name=attackPower]', '266')
             .type('#form1 input[name=affinity]', '20')
@@ -83,6 +86,7 @@ parallel('剣士', function (done) {
     it('双剣', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["双剣"])
             .type('#form1 input[name=attackPower]', '238')
             .type('#form1 input[name=affinity]', '15')
@@ -102,6 +106,7 @@ parallel('剣士', function (done) {
     it('ハンマー', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["ハンマー"])
             .type('#form1 input[name=attackPower]', '1196')
             .type('#form1 input[name=affinity]', '-25')
@@ -121,6 +126,7 @@ parallel('剣士', function (done) {
     it('狩猟笛', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["狩猟笛"])
             .type('#form1 input[name=attackPower]', '378')
             .type('#form1 input[name=affinity]', '0')
@@ -139,6 +145,7 @@ parallel('剣士', function (done) {
     it('ランス', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["ランス"])
             .type('#form1 input[name=attackPower]', '391')
             .type('#form1 input[name=affinity]', '30')
@@ -158,6 +165,7 @@ parallel('剣士', function (done) {
     it('ガンランス', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["ガンランス"])
             .type('#form1 input[name=attackPower]', '207')
             .type('#form1 input[name=affinity]', '0')
@@ -177,6 +185,7 @@ parallel('剣士', function (done) {
     it('スラッシュアックス', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["スラッシュアックス"])
             .type('#form1 input[name=attackPower]', '700')
             .type('#form1 input[name=affinity]', '0')
@@ -195,6 +204,7 @@ parallel('剣士', function (done) {
     it('チャージアックス', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["チャージアックス"])
             .type('#form1 input[name=attackPower]', '828')
             .type('#form1 input[name=affinity]', '-30')
@@ -215,6 +225,7 @@ parallel('剣士', function (done) {
     it('操虫棍', function (done) {
         new Nightmare({ show: false })
             .goto("https://ryoskate.jp/DamageCalculatorMHW/")
+            .wait(1000)
             .select('#form1 select[name=weapon]', w["操虫棍"])
             .type('#form1 input[name=attackPower]', '651')
             .type('#form1 input[name=affinity]', '0')
